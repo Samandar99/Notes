@@ -6,19 +6,26 @@
         <button class="notes__btn" @click="grid = !grid">
           <i class="fa-solid fa-bars humber fa-lg" v-if="grid"></i>
           <i class="fa fa-th fa-lg gird" v-else></i>
-          <span>list</span>
+          <span>{{ grid ? "List" : "Grid" }}</span>
         </button>
+      </div>
+      <div class="notes__list" :class="{ active: !grid }">
+        <NoteItem />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import NoteItem from "@/components/NoteItem.vue";
+
 export default {
+  components: {
+    NoteItem,
+  },
   data() {
     return {
-        grid: true,
-        
+      grid: true,
     };
   },
 };
@@ -28,8 +35,8 @@ export default {
 .humber {
   color: #8a2be2;
 }
-.gird{
-    color: #8a2be2;
+.gird {
+  color: #8a2be2;
 }
 
 .notes {
@@ -72,5 +79,17 @@ export default {
   font-size: 16px;
   line-height: 20px;
   font-family: "RM";
+}
+
+.notes__list {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.notes__list.active{
+  grid-template-columns: 1fr;
+  
 }
 </style>
