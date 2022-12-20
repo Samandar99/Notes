@@ -1,12 +1,11 @@
 <template>
   <div class="notes__item">
-    <div class="notes__item-top">
-      <h3 class="notes__item-title">Title</h3>
-      <p class="notes__item-date">07.03.2022</p>
+    <div class="notes__item-top" :class="{between: !gird}">
+      <h3 class="notes__item-title">{{ note.title }}</h3>
+      <p class="notes__item-date">{{ note.date }}</p>
     </div>
     <p class="notes__item-text">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque,
-      molestias omnis.
+     {{ note.descr }}
     </p>
     <div class="notes__item-btns">
       <button class="notes__item-btn edit">
@@ -15,14 +14,20 @@
       </button>
       <button class="notes__item-btn del">
         <i class="fa fa-trash icon-pen"></i>
-        <span>Edit</span>
+        <span>Delet</span>
       </button>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props:{
+    gird: Boolean,
+    note: Object, 
+  }
+  
+};
 </script>
 
 <style scoped>
@@ -99,5 +104,10 @@ export default {};
   background: #FFE1E1;
 }
 
+.between{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 </style>

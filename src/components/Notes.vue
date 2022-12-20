@@ -10,7 +10,12 @@
         </button>
       </div>
       <div class="notes__list" :class="{ active: !grid }">
-        <NoteItem />
+        <NoteItem 
+        :grid="grid" 
+        v-for="note in notes"
+        :key="note.id"
+        :note="note"
+        />
       </div>
     </div>
   </div>
@@ -27,6 +32,12 @@ export default {
     return {
       grid: true,
     };
+  },
+  props: {
+    notes: {
+      typeof: Array,
+      required: true,
+    },
   },
 };
 </script>
@@ -88,8 +99,7 @@ export default {
   gap: 24px;
 }
 
-.notes__list.active{
+.notes__list.active {
   grid-template-columns: 1fr;
-  
 }
 </style>
